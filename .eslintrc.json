@@ -1,0 +1,50 @@
+{
+  "extends": ["react-app", "react-app/jest", "plugin:prettier/recommended", "plugin:react-hooks/recommended"],
+  "plugins": ["prettier", "react", "react-hooks", "mobx"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "./"]
+      }
+    }
+  },
+  "rules": {
+    "import/no-anonymous-default-export": "off",
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "ignoreComments": false
+      }
+    ],
+    "no-console": "warn",
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        },
+        "groups": [["builtin", "external"], "internal", "parent", "sibling", "index"],
+        "newlines-between": "always"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": true,
+        "printWidth": 120
+      }
+    ],
+    "mobx/missing-make-observable": "error",
+    "mobx/unconditional-make-observable": "error",
+    "mobx/no-anonymous-observer": "error",
+    "mobx/missing-observer": "warn",
+    "react/display-name": "warn",
+    "require-yield": "error"
+  }
+}

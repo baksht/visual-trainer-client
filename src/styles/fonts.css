@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'GT Walsheim v2 Manual';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/GT-Walsheim-Regular.woff') format('woff'), 
+      url('../assets/fonts/GT-Walsheim-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GT Walsheim v2 Manual';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../assets/fonts/GT-Walsheim-Bold.woff') format('woff'),
+      url('../assets/fonts/GT-Walsheim-Bold.woff2') format('woff2'), 
+  
+  ;
+}
+
