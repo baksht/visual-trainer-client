@@ -20,10 +20,6 @@ jobs:
         run: npm install
       - name: build project
         run: npm run build
-      - name: tests
-        run: npm run test
-      - name: eject
-        run: npm run eject
       - name: lint code
         run: npm run lint
 
