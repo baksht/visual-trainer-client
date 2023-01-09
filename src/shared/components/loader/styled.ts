@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 
 import { LoaderSize } from 'src/shared/components/loader/types';
-import { staticColors, transitionMs } from 'src/styles/variables';
+import { staticColors } from 'src/styles/variables';
 
 const sizes = {
   small: css`

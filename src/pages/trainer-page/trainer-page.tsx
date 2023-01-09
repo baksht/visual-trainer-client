@@ -9,7 +9,7 @@ import {
   DragOverlay,
 } from '@dnd-kit/core';
 import { observer } from 'mobx-react-lite';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { GridContainer, ImagesHeap, TileImage, ProgressBar } from 'src/features';
 import ImageReferenceModal from 'src/features/image-reference-modal/image-reference-modal';

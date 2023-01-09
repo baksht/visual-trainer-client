@@ -3,7 +3,7 @@ import { action, makeObservable, observable, computed } from 'mobx';
 import { completeLevel, getLevel, getStatus } from 'src/api';
 import { LevelInfoType } from 'src/api/training/types';
 import { BACKEND_URL, ROUTES } from 'src/shared/constants';
-import { createPromiseController, PromiseControllerType, shuffleArray, hasValue } from 'src/shared/utils';
+import { createPromiseController, PromiseControllerType, hasValue } from 'src/shared/utils';
 import {
   ProgressBarStore as ProgressBar,
   RouterStore as Router,
