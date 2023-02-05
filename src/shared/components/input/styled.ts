@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { fontBodyL, fontBodyM } from 'src/styles/typography';
 import { staticColors } from 'src/styles/variables';
 
 export const InputContainer = styled.div<{ isError?: boolean }>`
@@ -17,24 +18,18 @@ export const InputField = styled.input`
   height: 100%;
   outline: none;
   border: none;
-  font-family: 'GT Walsheim v2 Manual';
-  font-size: 14px;
-  line-height: 20px;
   background: transparent;
   color: ${staticColors.black};
+  ${fontBodyM}
 `;
 
 export const Label = styled.label`
-  font-family: GT Walsheim v2 Manual;
-  font-size: 16px;
-  line-height: 20px;
   color: ${staticColors.black};
+  ${fontBodyL}
 `;
 
 export const ErrorMessage = styled.p`
-  font-family: GT Walsheim v2 Manual;
   margin: 0;
-  font-size: 14px;
-  line-height: 20px;
   color: ${staticColors.red};
+  ${fontBodyM}
 `;

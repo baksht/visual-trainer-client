@@ -5,9 +5,9 @@ import agent from 'src/api/agent';
 import { ENDPOINTS } from 'src/shared/constants';
 
 export function login(name: string, surname: string): Promise<AxiosResponse<UserInfoType>> {
-  return agent.post(ENDPOINTS.student.login, { name, surname });
+  return agent.post(ENDPOINTS.auth.login, { name, surname });
 }
 
 export function checkAuth(): Promise<AxiosResponse<UserInfoType>> {
-  return agent.get(ENDPOINTS.student.isAuth);
+  return agent.get(ENDPOINTS.auth.isAuth);
 }

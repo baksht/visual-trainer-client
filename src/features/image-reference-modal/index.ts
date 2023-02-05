@@ -1,3 +1,3 @@
-import GridContainer from 'src/features/grid-container/grid-container';
+import ImageReferenceModal from 'src/features/image-reference-modal/image-reference-modal';
 
-export default GridContainer;
+export default ImageReferenceModal;

@@ -28,7 +28,6 @@ export const ArrowButton = styled.button<{ variant: 'left' | 'right' }>`
   width: 100px;
   height: 100px;
   border: none;
-  outline: none;
   cursor: pointer;
   clip-path: ${({ variant }) =>
     variant === 'left' ? 'polygon(100% 0, 100% 100%, 50% 50%)' : 'polygon(0 0, 0 100%, 50% 50%)'};
@@ -46,7 +45,7 @@ export const CurrentImageContainer = styled.div<{ isDragging: boolean; isOver: b
   position: relative;
 
   img {
-    transition: ${transitionMs}ms;
+    transition-duration: ${transitionMs}ms;
     opacity: ${({ isDragging }) => (isDragging ? 0 : 1)};
   }
 `;

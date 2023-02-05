@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { FieldValues } from 'react-hook-form';
 
 import { schema } from 'src/features/login-form/constants';
-import { Form, Title, Logo, LogoContainer, CompanyName } from 'src/features/login-form/styled';
+import { Form, Title } from 'src/features/login-form/styled';
 import { LoginFormValues, FORM_VALUES } from 'src/features/login-form/types';
 import { Button, Input } from 'src/shared/components';
 import { useStore } from 'src/shared/hooks';
@@ -24,11 +24,6 @@ const LoginForm: React.FC = observer(function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <LogoContainer>
-        <Logo />
-        <CompanyName>VISUAL TRAINER</CompanyName>
-      </LogoContainer>
-
       <Title>Войти</Title>
       <Input
         label="Имя"

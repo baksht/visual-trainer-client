@@ -1,4 +1,4 @@
 import { TrainingStore } from 'src/store';
-export type Props = {
+export interface Props {
   store: TrainingStore;
-};
+}

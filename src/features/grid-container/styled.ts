@@ -9,6 +9,5 @@ export const Container = styled.ul<{ columnCount: number; size: number }>`
   display: grid;
   grid-template-columns: repeat(${({ columnCount }) => columnCount}, 1fr);
   grid-template-rows: repeat(${({ columnCount }) => columnCount}, 1fr);
-  grid-gap: 5px;
-  padding: 5px;
+  grid-gap: 2px;
 `;

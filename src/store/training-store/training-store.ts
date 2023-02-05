@@ -3,7 +3,7 @@ import { action, makeObservable, observable, computed } from 'mobx';
 import { completeLevel, getLevel, getStatus } from 'src/api';
 import { LevelInfoType } from 'src/api/training/types';
 import { BACKEND_URL, ROUTES } from 'src/shared/constants';
-import { createPromiseController, PromiseControllerType, hasValue } from 'src/shared/utils';
+import { createPromiseController, PromiseControllerType, hasValue, shuffleArray } from 'src/shared/utils';
 import {
   ProgressBarStore as ProgressBar,
   RouterStore as Router,
@@ -17,7 +17,7 @@ import { StepResultType } from 'src/store/step-store/types';
 class TrainingStore {
   @observable public isLoading: boolean = false;
   @observable public isImagePreviewOpened: boolean = false;
-  @observable private numberOfLevel: number | null = null;
+  @observable public numberOfLevel: number | null = null;
   @observable public activeId: string | null = null;
   @observable public heap: Heap;
   @observable public matchedElements: Tile[] = [];
@@ -180,9 +180,7 @@ class TrainingStore {
   private async startNewLevel(levelInfo: LevelInfoType): Promise<void> {
     const images = levelInfo.images.map((image) => new Image(image.id, image.order, `${BACKEND_URL}/${image.image}`));
 
-    // TODO Вернуть
-    // const mixedImages = shuffleArray(images);
-    const mixedImages = images;
+    const mixedImages = shuffleArray(images);
 
     const tiles = Array.from({ length: images.length }, (_, index) => new Tile(`matched-${index}`, index));
 

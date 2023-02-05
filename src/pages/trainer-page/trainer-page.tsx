@@ -11,8 +11,7 @@ import {
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 
-import { GridContainer, ImagesHeap, TileImage, ProgressBar } from 'src/features';
-import ImageReferenceModal from 'src/features/image-reference-modal/image-reference-modal';
+import { GridContainer, ImagesHeap, TileImage, ProgressBar, ImageReferenceModal, LevelsBar } from 'src/features';
 import { PageContainer } from 'src/pages/trainer-page/styled';
 import { Props } from 'src/pages/trainer-page/types';
 import { Loader } from 'src/shared/components';
@@ -88,6 +87,7 @@ const TrainerPage: React.FC<Props> = observer(function TrainerPage(props) {
         <Loader size="large" />
       ) : (
         <>
+          <LevelsBar width={gridSize} numberOfLevel={store.numberOfLevel} />
           {store.progressBar && (
             <ProgressBar isShown={store.isShowProgressBar} store={store.progressBar} width={gridSize} />
           )}

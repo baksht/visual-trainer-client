@@ -5,3 +5,5 @@ export { default as ImagesHeap } from 'src/features/images-heap';
 export { default as ProgressBar } from 'src/features/progress-bar';
 export { default as LoginForm } from 'src/features/login-form';
 export { default as Header } from 'src/features/header';
+export { default as LevelsBar } from 'src/features/levels-bar';
+export { default as ImageReferenceModal } from 'src/features/image-reference-modal';
