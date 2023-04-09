@@ -4,6 +4,6 @@ export { default as ImageStore } from 'src/store/image-store';
 export { default as HeapStore } from 'src/store/heap-store';
 export { default as StepStore } from 'src/store/step-store';
 export { default as ProgressBarStore } from 'src/store/progress-bar-store';
-export { default as StudentStore } from 'src/store/student-store';
+export { default as UserStore } from 'src/store/user-store';
 export { default as RouterStore } from 'src/store/router-store';
 export { default as RootStore } from 'src/store/root-store';

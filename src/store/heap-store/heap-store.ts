@@ -13,7 +13,7 @@ class HeapStore {
 
   @computed
   public get selectImage(): Image | null {
-    if (this.images.length > 0 && hasValue(this.selectedImageIndex)) {
+    if (this.images.length > 0) {
       return this.images[this.selectedImageIndex] || this.images[this.images.length - 1];
     }
 
@@ -22,31 +22,32 @@ class HeapStore {
 
   @computed
   public get isNextImage(): boolean {
-    return this.selectedImageIndex < this.images.length - 1;
+    return hasValue(this.images[this.selectedImageIndex + 1]);
   }
 
   @computed
   public get isPreviousImage(): boolean {
-    return this.selectedImageIndex > 0;
+    return hasValue(this.images[this.selectedImageIndex - 1]);
   }
 
   @action.bound
   public selectPreviousImage(): void {
-    if (this.images.length > 0 && hasValue(this.selectedImageIndex)) {
-      this.selectedImageIndex = this.selectedImageIndex === 0 ? this.images.length - 1 : this.selectedImageIndex - 1;
+    if (this.isPreviousImage) {
+      this.selectedImageIndex = this.selectedImageIndex - 1;
     }
   }
 
   @action.bound
   public selectNextImage(): void {
-    if (this.images.length > 0 && hasValue(this.selectedImageIndex)) {
-      this.selectedImageIndex = this.selectedImageIndex === this.images.length - 1 ? 0 : this.selectedImageIndex + 1;
+    if (this.isNextImage) {
+      this.selectedImageIndex = this.selectedImageIndex + 1;
     }
   }
 
   @action.bound
   public setImages(images: Image[]): void {
     this.images = images;
+    this.selectedImageIndex = images[this.selectedImageIndex] ? this.selectedImageIndex : 0;
   }
 }
 

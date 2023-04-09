@@ -1,7 +1,7 @@
 import { ProgressBarStore } from 'src/store';
 
 export interface Props {
-  store: ProgressBarStore;
+  store: ProgressBarStore | null;
   isShown: boolean;
   width: number;
 }

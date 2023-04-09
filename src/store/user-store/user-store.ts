@@ -5,7 +5,7 @@ import { ROUTES } from 'src/shared/constants';
 import { getAccessToken, setAccessToken, removeAccessToken } from 'src/shared/utils';
 import { RouterStore } from 'src/store';
 
-class StudentStore {
+class UserStore {
   @observable public isAuth: boolean = false;
   @observable public name: string | null = null;
   @observable public surname: string | null = null;
@@ -82,4 +82,4 @@ class StudentStore {
   }
 }
 
-export default StudentStore;
+export default UserStore;

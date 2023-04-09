@@ -10,3 +10,7 @@ export const PageContainer = styled.main`
   justify-content: center;
   background: ${staticColors.white};
 `;
+
+export const StartTrainingBlock = styled.div`
+  width: 280px;
+`;

@@ -8,7 +8,7 @@ import { Form, Title } from 'src/features/login-form/styled';
 import { LoginFormValues, FORM_VALUES } from 'src/features/login-form/types';
 import { Button, Input } from 'src/shared/components';
 import { useStore } from 'src/shared/hooks';
-import { getError } from 'src/shared/utils';
+import { getFormError } from 'src/shared/utils';
 
 const LoginForm: React.FC = observer(function LoginForm() {
   const { formState, register, handleSubmit } = useForm<LoginFormValues>({
@@ -16,7 +16,7 @@ const LoginForm: React.FC = observer(function LoginForm() {
     mode: 'onChange',
   });
 
-  const { student } = useStore();
+  const { user: student } = useStore();
 
   function onSubmit(formData: FieldValues) {
     student.login(formData.name, formData.surname);
@@ -28,12 +28,12 @@ const LoginForm: React.FC = observer(function LoginForm() {
       <Input
         label="Имя"
         register={register(FORM_VALUES.name)}
-        errorMessage={getError(formState.errors, FORM_VALUES.name)}
+        errorMessage={getFormError(formState.errors, FORM_VALUES.name)}
       />
       <Input
         label="Фамилия"
         register={register(FORM_VALUES.surname)}
-        errorMessage={getError(formState.errors, FORM_VALUES.surname)}
+        errorMessage={getFormError(formState.errors, FORM_VALUES.surname)}
       />
 
       <Button disabled={!formState.isValid} buttonText="Войти" type="submit" />

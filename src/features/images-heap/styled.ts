@@ -6,11 +6,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 -10px 0 -10px;
-
-  > * {
-    margin: 0 10px;
-  }
+  gap: 10px;
 `;
 
 export const Blur = styled.div`

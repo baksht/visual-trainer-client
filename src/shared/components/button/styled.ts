@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { fontBodyM } from 'src/styles/typography';
+import { fontBodyL } from 'src/styles/typography';
 import { staticColors, transitionMs } from 'src/styles/variables';
 
 export const ButtonContainer = styled.button`
@@ -11,7 +11,7 @@ export const ButtonContainer = styled.button`
   transition: ${transitionMs}ms;
   cursor: pointer;
   color: ${staticColors.white};
-  ${fontBodyM}
+  ${fontBodyL}
 
   &[disabled] {
     background-color: ${staticColors.grey};

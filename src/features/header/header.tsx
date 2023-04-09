@@ -4,7 +4,7 @@ import { Container, StudentInfoBlock, StudentName, LogoutButton } from 'src/feat
 import { useStore } from 'src/shared/hooks';
 
 const Header: React.FC = observer(function Header() {
-  const { student } = useStore();
+  const { user: student } = useStore();
 
   return (
     <Container>
