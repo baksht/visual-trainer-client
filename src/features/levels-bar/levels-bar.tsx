@@ -9,7 +9,9 @@ const LevelsBar: React.FC<Props> = observer(function ProgressBar(props) {
   return (
     <Container width={width}>
       {Array.from({ length: 10 }, (_, index) => (
-        <LevelItem isSelected={index + 1 === numberOfLevel}>{index + 1}</LevelItem>
+        <LevelItem isSelected={index + 1 === numberOfLevel} key={index}>
+          {index + 1}
+        </LevelItem>
       ))}
     </Container>
   );

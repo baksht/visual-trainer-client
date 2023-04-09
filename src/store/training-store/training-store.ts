@@ -1,4 +1,4 @@
-import { action, makeObservable, observable, computed } from 'mobx';
+import { action, makeObservable, observable, computed, flow } from 'mobx';
 
 import { completeLevel, getLevel, getStatus } from 'src/api';
 import { LevelInfoType } from 'src/api/training/types';
@@ -11,12 +11,14 @@ import {
   TileStore as Tile,
   HeapStore as Heap,
   StepStore as Step,
+  UserStore as User,
 } from 'src/store';
 import { StepResultType } from 'src/store/step-store/types';
 
 class TrainingStore {
   @observable public isLoading: boolean = false;
   @observable public isImagePreviewOpened: boolean = false;
+  @observable public isFinishTrainingModalOpened: boolean = false;
   @observable public numberOfLevel: number | null = null;
   @observable public activeId: string | null = null;
   @observable public heap: Heap;
@@ -28,16 +30,20 @@ class TrainingStore {
 
   private referenceViewingTime: number | null = null;
   private readinessController: PromiseControllerType<void> | null = null;
+  private trainingFinishController: PromiseControllerType<void> | null = null;
 
   private readonly router: Router;
+  private readonly user: User;
 
-  constructor(router: Router) {
+  constructor(router: Router, user: User) {
     this.router = router;
+    this.user = user;
     this.heap = new Heap();
 
     makeObservable(this);
   }
 
+  @flow.bound
   public async init(): Promise<void> {
     if (this.isLoading) return;
     this.setIsLoading(true);
@@ -46,7 +52,9 @@ class TrainingStore {
       const { data } = await getStatus();
 
       if (data.isTrainingFinished) {
-        this.router.push(`${ROUTES.training.root}/${ROUTES.training.results}`);
+        this.router.push(`${ROUTES.training.root}/${ROUTES.training.test}`);
+        this.openTrainingFinishModal();
+        await this.trainingFinishController;
         return;
       }
 
@@ -58,7 +66,7 @@ class TrainingStore {
 
       this.router.push(`${ROUTES.training.root}/${ROUTES.training.manual}`);
     } catch (error) {
-      // TODO Обработать ошибку
+      // TODO обработать ошибку
     } finally {
       this.setIsLoading(false);
     }
@@ -140,9 +148,16 @@ class TrainingStore {
 
   @action.bound
   public startTraining(): void {
-    this.router.push(`${ROUTES.training.root}/${ROUTES.training.results}`);
+    this.router.push(`${ROUTES.training.root}/${ROUTES.training.test}`);
 
     this.fetchLevel(1);
+  }
+
+  @action.bound
+  public finishTraining(): void {
+    this.isFinishTrainingModalOpened = false;
+    this.trainingFinishController?.resolve();
+    this.user.logout();
   }
 
   @action.bound
@@ -202,10 +217,16 @@ class TrainingStore {
 
       await this.startNewLevel(data);
     } catch (error) {
-      // TODO Обработать ошибку
+      console.error(error);
     } finally {
       this.setIsLoading(false);
     }
+  }
+
+  @action.bound
+  private openTrainingFinishModal(): void {
+    this.trainingFinishController = createPromiseController();
+    this.isFinishTrainingModalOpened = true;
   }
 
   @action.bound
@@ -222,14 +243,15 @@ class TrainingStore {
       this.resetRoundData();
 
       if (data.isTrainingFinished) {
-        this.router.push(`${ROUTES.training.root}/${ROUTES.training.results}`);
+        this.openTrainingFinishModal();
+        await this.trainingFinishController;
       }
 
       if (!data.isTrainingFinished && hasValue(data.numberOfNextLevel)) {
         await this.fetchLevel(data.numberOfNextLevel);
       }
     } catch (error) {
-      // TODO Обработать ошибку
+      // TODO обработать ошибку
     } finally {
       this.setIsLoading(false);
     }

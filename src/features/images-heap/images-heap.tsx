@@ -22,12 +22,24 @@ const ImagesHeap: React.FC<Props> = observer(function ImagesHeap(props) {
 
   return (
     <Container>
-      <ArrowButton variant="left" onClick={onSelectPreviousImage} disabled={!store.isPreviousImage} />
+      <ArrowButton
+        variant="left"
+        onClick={onSelectPreviousImage}
+        disabled={!store.isPreviousImage}
+        type="button"
+        tabIndex={0}
+      />
       <CurrentImageContainer isDragging={isDragging} ref={setNodeRef} isOver={isOver} imageSize={imageSize}>
         {store.selectImage && <TileImage store={store.selectImage} tileId="heap" imageSize={imageSize} />}
         {isOver && <Blur />}
       </CurrentImageContainer>
-      <ArrowButton variant="right" onClick={onSelectNextImage} disabled={!store.isNextImage} />
+      <ArrowButton
+        variant="right"
+        onClick={onSelectNextImage}
+        disabled={!store.isNextImage}
+        type="button"
+        tabIndex={0}
+      />
     </Container>
   );
 });

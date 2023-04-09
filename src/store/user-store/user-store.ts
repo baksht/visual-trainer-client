@@ -5,7 +5,7 @@ import { ROUTES } from 'src/shared/constants';
 import { getAccessToken, setAccessToken, removeAccessToken } from 'src/shared/utils';
 import { RouterStore } from 'src/store';
 
-class StudentStore {
+class UserStore {
   @observable public isAuth: boolean = false;
   @observable public name: string | null = null;
   @observable public surname: string | null = null;
@@ -41,7 +41,7 @@ class StudentStore {
 
       this.router.push(ROUTES.training.root);
     } catch (error) {
-      // TODO Обработать ошибку
+      console.error(error);
     }
   }
 
@@ -66,7 +66,7 @@ class StudentStore {
 
       return true;
     } catch (error) {
-      // TODO Обработать ошибку
+      console.error(error);
       this.router.push(ROUTES.login);
       return false;
     }
@@ -82,4 +82,4 @@ class StudentStore {
   }
 }
 
-export default StudentStore;
+export default UserStore;

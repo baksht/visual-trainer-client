@@ -1,3 +1,4 @@
+export { default as TrainingFinishModal } from 'src/features/training-finish-modal';
 export { default as Tile } from 'src/features/tile';
 export { default as GridContainer } from 'src/features/grid-container';
 export { default as TileImage } from 'src/features/tile-image';

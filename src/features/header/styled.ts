@@ -29,6 +29,10 @@ export const StudentInfoBlock = styled.div`
     align-items: center;
     justify-content: center;
 
+    @media (max-width: ${breakpoints.sm}) {
+      padding: 0 10px;
+    }
+
     :first-child {
       border-right: 1px solid ${staticColors.lightGray};
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { fontBodyL, fontBodyM } from 'src/styles/typography';
+import { fontBodyL } from 'src/styles/typography';
 import { staticColors } from 'src/styles/variables';
 
 export const InputContainer = styled.div<{ isError?: boolean }>`
@@ -20,7 +20,7 @@ export const InputField = styled.input`
   border: none;
   background: transparent;
   color: ${staticColors.black};
-  ${fontBodyM}
+  ${fontBodyL}
 `;
 
 export const Label = styled.label`
@@ -30,6 +30,7 @@ export const Label = styled.label`
 
 export const ErrorMessage = styled.p`
   margin: 0;
+  height: 16px;
   color: ${staticColors.red};
-  ${fontBodyM}
+  ${fontBodyL}
 `;

@@ -2,18 +2,18 @@ import { action, makeObservable, observable } from 'mobx';
 import { NavigateFunction } from 'react-router-dom';
 
 import { ROUTES } from 'src/shared/constants';
-import { StudentStore, RouterStore } from 'src/store';
+import { UserStore, RouterStore } from 'src/store';
 
 export class RootStore {
   @observable isInitialized: boolean = false;
   @observable isLoading: boolean = false;
 
-  public readonly student: StudentStore;
+  public readonly user: UserStore;
   public readonly router: RouterStore;
 
   constructor(navigate: NavigateFunction) {
     this.router = new RouterStore(navigate);
-    this.student = new StudentStore(this.router);
+    this.user = new UserStore(this.router);
 
     makeObservable(this);
   }
@@ -25,7 +25,7 @@ export class RootStore {
     this.isLoading = true;
 
     try {
-      const isAuth = await this.student.checkAuth();
+      const isAuth = await this.user.checkAuth();
 
       if (isAuth) {
         this.router.push(ROUTES.training.root);

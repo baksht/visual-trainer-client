@@ -5,6 +5,5 @@ export const ROUTES = {
     root: 'training',
     manual: 'manual',
     test: 'test',
-    results: 'results',
   },
 };

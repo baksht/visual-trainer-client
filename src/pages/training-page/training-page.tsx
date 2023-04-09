@@ -11,14 +11,22 @@ import {
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 
-import { GridContainer, ImagesHeap, TileImage, ProgressBar, ImageReferenceModal, LevelsBar } from 'src/features';
-import { PageContainer } from 'src/pages/trainer-page/styled';
-import { Props } from 'src/pages/trainer-page/types';
+import {
+  GridContainer,
+  ImagesHeap,
+  TileImage,
+  ProgressBar,
+  ImageReferenceModal,
+  LevelsBar,
+  TrainingFinishModal,
+} from 'src/features';
+import { PageContainer } from 'src/pages/training-page/styled';
+import { Props } from 'src/pages/training-page/types';
 import { Loader } from 'src/shared/components';
 import { useElementSize } from 'src/shared/hooks';
 import { hasValue } from 'src/shared/utils';
 
-const TrainerPage: React.FC<Props> = observer(function TrainerPage(props) {
+const TrainingPage: React.FC<Props> = observer(function TrainingPage(props) {
   const { store } = props;
 
   const sensors = useSensors(useSensor(TouchSensor), useSensor(MouseSensor));
@@ -82,15 +90,13 @@ const TrainerPage: React.FC<Props> = observer(function TrainerPage(props) {
   const imageSize = gridSize / columnCount - 10;
 
   return (
-    <PageContainer ref={ref}>
+    <PageContainer ref={ref} isLoading={store.isLoading}>
       {store.isLoading ? (
-        <Loader size="large" />
+        <Loader size="small" />
       ) : (
         <>
           <LevelsBar width={gridSize} numberOfLevel={store.numberOfLevel} />
-          {store.progressBar && (
-            <ProgressBar isShown={store.isShowProgressBar} store={store.progressBar} width={gridSize} />
-          )}
+          <ProgressBar isShown={store.isShowProgressBar} store={store.progressBar} width={gridSize} />
           <DndContext sensors={sensors} onDragEnd={onDragEnd} onDragStart={onDragStart}>
             <GridContainer columnCount={columnCount} items={store.matchedElements} gridSize={gridSize} />
 
@@ -102,7 +108,7 @@ const TrainerPage: React.FC<Props> = observer(function TrainerPage(props) {
             />
 
             <DragOverlay>
-              {store.activeImage && <TileImage store={store.activeImage} imageSize={imageSize} />}
+              {store.activeImage && <TileImage store={store.activeImage} imageSize={imageSize} isLocked={true} />}
             </DragOverlay>
           </DndContext>
         </>
@@ -114,8 +120,9 @@ const TrainerPage: React.FC<Props> = observer(function TrainerPage(props) {
         onStartLevel={store.closeImagePreview}
         gridSize={gridSize}
       />
+      <TrainingFinishModal isOpened={store.isFinishTrainingModalOpened} onFinish={store.finishTraining} />
     </PageContainer>
   );
 });
 
-export default TrainerPage;
+export default TrainingPage;

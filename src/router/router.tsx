@@ -8,7 +8,7 @@ import { ROUTES } from 'src/shared/constants';
 import { useStore } from 'src/shared/hooks';
 
 const Router: React.FC = observer(function Router() {
-  const { student } = useStore();
+  const { user: student } = useStore();
 
   return (
     <Routes>
