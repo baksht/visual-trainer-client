@@ -217,7 +217,7 @@ class TrainingStore {
 
       await this.startNewLevel(data);
     } catch (error) {
-      console.error(error);
+      // TODO Обработать ошибку
     } finally {
       this.setIsLoading(false);
     }

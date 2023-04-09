@@ -41,7 +41,7 @@ class UserStore {
 
       this.router.push(ROUTES.training.root);
     } catch (error) {
-      console.error(error);
+      // TODO Обработать ошибку
     }
   }
 
@@ -66,7 +66,7 @@ class UserStore {
 
       return true;
     } catch (error) {
-      console.error(error);
+      // TODO Обработать ошибку
       this.router.push(ROUTES.login);
       return false;
     }
